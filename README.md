@@ -17,10 +17,11 @@ has_many  ->           <- has_many ->                 <-has_many
 
                       Attributes
 *Device               Name                            description
-                      #containers                     origin
-                      Location                        destination
-                                                      cost
-                                                      #containers
+                      Location                        origin
+                      Capacity                        destination
+                      Load Taken                      cost
+                                                      total containers
+                                                      containers remaining
                       Functions
                       CRUD                             CRUD
                       assign to job                 assign to boat
