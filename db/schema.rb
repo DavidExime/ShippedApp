@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(version: 20180301221204) do
     t.string "description"
     t.string "origin"
     t.string "destination"
-    t.integer "cost"
-    t.integer "totalcontainers"
-    t.integer "recontainers"
+    t.integer "cost" #calautedbyus
+    t.integer "totalcontainers" 
+    t.integer "recontainers" #US
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

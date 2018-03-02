@@ -1,0 +1,25 @@
+
+<!-- form for destin -->
+<h3>Please Create a new form for Jobs</h3>
+
+
+<%= form_for @job do |f| %>
+
+<%= f.text_field :destination %>
+<%= f.text_area :totalcontainers %>
+<%= f.submit %>
+<% end %>
+ 
+
+
+ <!-- create_table "jobs", force: :cascade do |t|
+    t.string "description"
+    t.string "origin"
+    t.string "destination"
+    t.integer "cost" #calautedbyus
+    t.integer "totalcontainers" 
+    t.integer "recontainers" #US
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+ -->
