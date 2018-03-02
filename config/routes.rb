@@ -7,8 +7,13 @@ Rails.application.routes.draw do
       root 'users#index', as: :authenticated_root
     end
 
+    resources :users do
+      resources :boats
+    end
+
     unauthenticated do
       root 'devise/sessions#new', as: :unauthenticated_root
     end
   end
+  resources :jobs
 end
