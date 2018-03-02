@@ -1,10 +1,15 @@
 class BoatsController < ApplicationController
+  def index
+    @boats = Boat.all
+  end
+
   def create
     @boat = Boat.create(boat_params)
   end
   def show
     @boat = Boat.find(params[:id])
     @user = User.find(params[:user_id])
+    @jobs = Job.all
   end
   private
 
