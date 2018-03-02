@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    sessions: 'devise/sessions'
   }
   devise_scope :user do
     authenticated :user do
