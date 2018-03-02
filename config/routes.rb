@@ -16,4 +16,5 @@ Rails.application.routes.draw do
     end
   end
   resources :jobs
+  post '/assignjob', to: "jobs#assignjob"
 end
