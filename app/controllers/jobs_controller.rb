@@ -29,7 +29,12 @@ class JobsController < ApplicationController
   def destroy
     @current_user = current_user.id
   end
-
+  def assignjob
+    @boat = Boat.find(params[:id])
+    @job = Job.find(params[:jobid])
+    @boat.jobs << @job
+    redirect_to user_boat_path(id: params[:id], user_id: current_user.id)
+  end
   private
 
   def job_params
