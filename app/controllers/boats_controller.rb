@@ -2,15 +2,26 @@ class BoatsController < ApplicationController
   def index
     @boats = Boat.all
     @current_user = current_user.id
+    @boat = Boat.new(boat_params)
   end
 
   def new
     @current_user = current_user.id
+    @default_load = 0;
+    @boat = Boat.new
   end
 
   def create
     @current_user = current_user.id
     @boat = Boat.create(boat_params)
+    @boat_id = Boat.last.id
+    if @boat.save
+      flash[:message] = 'Boat Created'
+      redirect_to "/users/#{@current_user}/boats/#{@boat_id}"
+    else
+      flash[:message] = 'Capacity Must Be A Number Greater Than Zero'
+      redirect_back(fallback_location: "/users/#{@current_user}/boats/new")
+    end
   end
 
   def show
