@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   devise_scope :user do
     authenticated :user do
       root 'users#index', as: :authenticated_root
+    end
+
+    resources :users do
       resources :boats
     end
 
