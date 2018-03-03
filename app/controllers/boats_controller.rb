@@ -2,7 +2,6 @@ class BoatsController < ApplicationController
   def index
     @boats = Boat.all
     @current_user = current_user.id
-    @boat = Boat.new(boat_params)
   end
 
   def new

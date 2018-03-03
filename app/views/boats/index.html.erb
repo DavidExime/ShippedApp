@@ -1,0 +1,13 @@
+<h1>Create Boat</h1>
+
+<%= render 'boatForm' %>
+
+<h2>All Boats</h2>
+
+<% @boats.reverse.each do |b| %>
+  Boat Name: <%= b.name %><br>
+  <img src="<%= b.avatar %>"><br>
+  Boat Capacity: <%= b.capacity %><br>
+  Boat Location: <%= b.location %><br>
+  <hr>
+<% end %>
