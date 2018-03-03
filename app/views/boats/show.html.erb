@@ -1,6 +1,8 @@
 <h1><%= @boat.name %></h1>
 <h3>contact owner: <%= @user.email %> </h3>
 
+<div><%= image_tag @boat.avatar.url(:medium) %></div>
+</div>
 
 <h4>Boat Stats</h4>
 <ul>
