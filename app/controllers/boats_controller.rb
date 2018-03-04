@@ -32,10 +32,19 @@ class BoatsController < ApplicationController
 
   def edit
     @current_user = current_user.id
+    @boat = Boat.find(params[:id])
   end
 
   def update
     @current_user = current_user.id
+    @boat = Boat.find(params[:id])
+    if @boat.update(boat_params)
+      flash[:message] = "Boat updated"
+      redirect_to user_boat_path
+    else
+      flash[:message] = "Update Unsuccessful"
+      render user_boat_path
+    end
   end
 
   def destroy
