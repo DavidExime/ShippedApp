@@ -1,0 +1,12 @@
+<%= form_for Job.new, url: jobs_path do |f| %>
+ description:<div><%=f.text_field :description %></div>
+ origin<div><%= f.text_field :origin %></div>
+ destination<div><%= f.text_field :destination %></div>
+ total containers<div><%= f.text_field :totalcontainers  %></div>
+
+
+ 
+
+ 	<%= f.submit %>
+  <% end %>
+
