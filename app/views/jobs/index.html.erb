@@ -1,9 +1,18 @@
-<h3>Please Create a new form for Jobs</h3>
+<h3>List of all jobs:</h3>
+
+<% @jobs.each do |a| %>
+	<a href='/jobs/<%=a.id %>'><div><%= a.description %></div></a>
+	<div><%=  %></div>
+	<% end %>
+<br>
+<%= link_to 'New Jobs', new_job_path %>
 
 
-<%= form_for @job do |f| %>
 
-<%= f.text_field :destination %>
-<%= f.text_area :totalcontainers %>
-<%= f.submit %>
-<% end %>
+<p> Please Select a Job.</p>
+<select name="Jobs List" form="Jobform">
+  <option value="Frozen Foods">Frozen Foods</option>
+  <option value="Produce">Produce</option>
+  <option value="Vehicles&Boats">Vehicles</option>
+  <option value="">Electronics</option>
+</select> 
