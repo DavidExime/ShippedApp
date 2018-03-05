@@ -1,1 +1,15 @@
-<h2><%=current_user.email%></h2>
+
+
+<h1><%= @user.email %>'s boats</h1>
+<ol>
+  <% @boats.reverse.each do |b| %>
+    <% if @user.id == b.user_id %>
+      Boat Name: <%= b.name %><br>
+      <%= image_tag b.avatar.url(:thumb) %><br>
+      Boat Capacity: <%= b.capacity %><br>
+      Boat Location: <%= b.location %><br>
+      <hr>
+    <% end %>
+  <% end %>
+</ol>
+
