@@ -11,9 +11,9 @@
   <body>
     <nav>
       <% if user_signed_in? %>
-        <%= link_to "Profile", user_path(@current_user), :method => :get %>
+        <%= link_to "Profile", user_path(current_user), :method => :get %>
         <%= link_to "Users List", users_path, :method => :get %>
-        <%= link_to "Boats List", user_boats_path(@current_user), :method => :get %>
+        <%= link_to "Boats List", user_boats_path(current_user), :method => :get %>
         <%= link_to "Jobs List", jobs_path, :method => :get %>
         <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
       <% else%>
