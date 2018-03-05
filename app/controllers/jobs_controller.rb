@@ -17,8 +17,8 @@ class JobsController < ApplicationController
   def create
 
   	@job = Job.new(job_params)
-  	@job.recontainers = @job.totalcontainers  
-  	@job.cost = @job.totalcontainers * 100  
+  	@job.recontainers = @job.totalcontainers
+  	@job.cost = @job.totalcontainers * 100
   	if @job.save
   		redirect_to "/jobs"
   	else
@@ -38,6 +38,7 @@ class JobsController < ApplicationController
 
   def show
     @current_user = current_user.id
+    @jobs = Job.all
   end
 
   def edit
