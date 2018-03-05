@@ -1,7 +1,8 @@
 class BoatsController < ApplicationController
   def index
     @boats = Boat.all
-    @current_user = current_user.id
+    # @user = User.find(params[:user_id])
+    # @current_user = current_user.id
   end
 
   def new
@@ -11,9 +12,10 @@ class BoatsController < ApplicationController
   end
 
   def create
-    @current_user = current_user.id
+
     @boat = Boat.create(boat_params)
-    @boat_id = Boat.last.id
+    @boat.user_id = current_user.id
+    # @boat_id = Boat.last.id
     if @boat.save
       flash[:message] = 'Boat Created'
       redirect_to "/users/#{@current_user}/boats/#{@boat_id}"

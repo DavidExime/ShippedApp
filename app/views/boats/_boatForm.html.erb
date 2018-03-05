@@ -1,11 +1,11 @@
 
-<%= form_for Boat.new, url: user_boats_path(@current_user) do |f| %>
+<%= form_for Boat.new, url: user_boats_path(current_user) do |f| %>
   name<%= f.text_field :name, required: true%>
-  capacity<%= f.text_field :capacity,required: true %>
+  capacity<%= f.text_field :capacity %>
   location<%= f.text_field :location,required: true  %>
-  photo<%= f.file_field :avatar,required: true %>
+  photo<%= f.file_field :avatar %>
   <%= f.hidden_field :loadtaken, value: 0 %>
-  <%= f.hidden_field :user_id, value: @current_user %>
+  <%= f.hidden_field :user_id, value: current_user %>
   <%= f.submit %>
 
 <% end %>
