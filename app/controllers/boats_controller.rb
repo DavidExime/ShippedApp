@@ -18,7 +18,7 @@ class BoatsController < ApplicationController
     # @boat_id = Boat.last.id
     if @boat.save
       flash[:message] = 'Boat Created'
-      redirect_to "/users/#{@current_user}/boats/#{@boat_id}"
+      redirect_to user_boat_path(:id => @boat.id, :user_id => @boat.user_id)
     else
       flash[:message] = 'Capacity Must Be A Number Greater Than Zero'
       redirect_back(fallback_location: "/users/#{@current_user}/boats/new")

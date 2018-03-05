@@ -2,7 +2,7 @@
 <ol>
   <% @boats.reverse.each do |b| %>
     <% if @user.id == b.user_id %>
-      Boat Name: <%= b.name %><br>
+      Boat Name: <%= link_to b.name, user_boat_path(:id => b.id, :user_id => b.user_id) %><br>
       <%= image_tag b.avatar.url(:thumb) %><br>
       Boat Capacity: <%= b.capacity %><br>
       Boat Location: <%= b.location %><br>
@@ -10,4 +10,3 @@
     <% end %>
   <% end %>
 </ol>
-
