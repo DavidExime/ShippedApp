@@ -1,3 +1,5 @@
+<h1>Boat Owners</h1>
 
-
-<h1>hello</h1>
+<% @users.reverse.each do |u| %>
+  <p><a href="/users/<%= u.id %>"><%= u.email %></a></p>
+<% end %>
