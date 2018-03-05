@@ -1,6 +1,7 @@
 <h1><%= @boat.name %></h1>
 <h6><%= link_to "Manage Boat", edit_user_boat_path%></h6>
-<h3>contact owner: <%= @user.email %> </h3>
+
+<h3>owned by: <%= link_to @user.email, user_path%></h3>
 
 <div><%= image_tag @boat.avatar.url(:medium) %></div>
 </div>
@@ -14,7 +15,7 @@
 
 <h4>Current Jobs</h4>
 <% @boat.jobs.each do |j| %>
-<%= j.description %>
+<%= j.description %><%=link_to "Unassign", removejob_path(:jobid => j.id), method: :delete%>
 <% end %>
 
 
