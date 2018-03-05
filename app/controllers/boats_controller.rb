@@ -79,3 +79,6 @@ class BoatsController < ApplicationController
     params.require(:boat).permit(:avatar, :name, :capacity, :location, :loadtaken, :user_id)
   end
 end
+
+
+
