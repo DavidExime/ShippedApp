@@ -17,23 +17,13 @@ class JobsController < ApplicationController
   def create
 
   	@job = Job.new(job_params)
-  	@job.recontainers = @job.totalcontainers  
-  	@job.cost = @job.totalcontainers * 100  
+  	@job.recontainers = @job.totalcontainers
+  	@job.cost = @job.totalcontainers * 100
   	if @job.save
   		redirect_to "/jobs"
   	else
   		redirect_to new_job_path
   	end
-  end
-
-
-  private
-
-  def job_params
-  	params.require(:job).permit(:description, :origin, :destination, :cost, :totalcontainers,
-  		:recontainers)
-
-    @current_user = current_user.id
   end
 
   def show
@@ -52,9 +42,12 @@ class JobsController < ApplicationController
     @current_user = current_user.id
   end
   def assignjob
-    @boat = Boat.find(params[:id])
-    @job = Job.find(params[:jobid])
-    @boat.jobs << @job
+    boat = Boat.find(params[:id])
+    job = Job.find(params[:jobid])
+    containers = :containers
+    boat.jobs << job
+    work = Work.where(job_id: params[:jobid], boat_id: params[:id])
+    work.update(containers: params[:containers])
     redirect_to user_boat_path(id: params[:id], user_id: current_user.id)
   end
   private
