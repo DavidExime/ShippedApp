@@ -12,3 +12,6 @@ class BoatsController < ApplicationController
     params.require(:user).permit(:avatar)
   end
 end
+
+
+
