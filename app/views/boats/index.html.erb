@@ -1,0 +1,15 @@
+<h1>Create Boat</h1>
+
+<%= render 'boatForm' %>
+
+<h2>All Boats</h2>
+
+<% @boats.reverse.each do |b| %>
+  <% if current_user.id == b.user_id %>
+    Boat Name: <%= link_to b.name, user_boat_path(:id => b.id, :user_id => b.user_id) %><br>
+    <%= image_tag b.avatar.url(:thumb) %><br>
+    Boat Capacity: <%= b.capacity %><br>
+    Boat Location: <%= b.location %><br>
+    <hr>
+  <% end %>
+<% end %>

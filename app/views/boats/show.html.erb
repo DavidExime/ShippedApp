@@ -1,0 +1,38 @@
+<h1><%= @boat.name %></h1>
+<h6><%= link_to "Manage Boat", edit_user_boat_path%></h6>
+
+<h3>owned by: <%= link_to @user.email, user_path(:id => params[:user_id])%></h3>
+
+<div><%= image_tag @boat.avatar.url(:medium) %></div>
+</div>
+
+<h4>Boat Stats</h4>
+<ul>
+  <li>Location: <%=@boat.location%></li>
+  <li>Capacity: <%=@boat.capacity%></li>
+  <li>Remaing: <%=@boat.capacity - @boat.loadtaken%></li>
+</ul>
+
+<h4>Current Jobs</h4>
+<% @boatjobs.each do |j| %>
+<%= Job.find(j.job_id).description%>
+<%= j.containers %>
+
+<%=link_to "Unassign", removejob_path(:jobid => j.job_id), method: :delete%>
+<% end %>
+
+
+<h4>Available Jobs</h4>
+<% @jobs.each do |j| %>
+  <%= form_for :job, url: {action: 'assignjob', controller: 'jobs'} do |r| %>
+    <div>
+    Description: <%= j.description%>
+    Containers Required: <%= j.totalcontainers%>
+    Containers Remaining:<%= j.recontainers%></div>
+    <%= hidden_field_tag "id", @boat.id%>
+    <%= hidden_field_tag "jobid", j.id%>
+    <%= number_field_tag "containers"%>
+    <div><%= r.submit %></div>
+    <br>
+  <% end %>
+<% end %>
