@@ -5,8 +5,8 @@
 <h2>All Boats</h2>
 
 <% @boats.reverse.each do |b| %>
-  Boat Name: <%= b.name %><br>
-  <img src="<%= b.avatar %>"><br>
+  Boat Name:  <a href="/"><%= b.name %></a><br>
+  <%= image_tag b.avatar.url(:thumb) %><br>
   Boat Capacity: <%= b.capacity %><br>
   Boat Location: <%= b.location %><br>
   <hr>

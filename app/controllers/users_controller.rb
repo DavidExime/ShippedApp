@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
-    @boats = Boat.all
+    @users = User.all
+    @user = User.find_by_email(params[:id])
     @current_user = current_user.id
   end
 
@@ -14,6 +15,8 @@ class UsersController < ApplicationController
 
   def show
     @current_user = current_user.id
+    @user = User.find(params[:id])
+    @boats = Boat.all
   end
 
   def edit
