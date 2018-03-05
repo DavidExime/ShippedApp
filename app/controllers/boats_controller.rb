@@ -54,6 +54,7 @@ class BoatsController < ApplicationController
     @boat.destroy
     redirect_to user_path(:id => current_user.id)
   end
+  
   def removejob
     boat = Boat.find(params[:id])
     if boat.jobs.delete(params[:jobid])

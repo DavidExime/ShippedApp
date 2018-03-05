@@ -1,0 +1,7 @@
+<%= form_for Job.find_by_id(params[:id]), url: "/jobs/#{params[:id]}" do |f| %>
+ <div>Description:<%= f.text_field :description %></div>
+ <div>Origin:<%= f.text_field :origin %></div>
+ <div>Destination:<%= f.text_field :destination %></div>
+ <div>Containers:<%= f.text_field :totalcontainers  %></div>
+<%= f.submit %>
+  <% end %>

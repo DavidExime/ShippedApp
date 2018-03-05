@@ -26,27 +26,30 @@ class JobsController < ApplicationController
   	end
   end
 
-
-  private
-
-  def job_params
-  	params.require(:job).permit(:description, :origin, :destination, :cost, :totalcontainers,
-  		:recontainers)
-
-    @current_user = current_user.id
-  end
-
   def show
     @current_user = current_user.id
-    @jobs = Job.all
+    @job = Job.find_by_id(params[:id])
+
   end
 
   def edit
-    @current_user = current_user.id
+    @job = Job.find_by_id(params[:id])
+
+    # @current_user = current_user.id
   end
 
   def update
-    @current_user = current_user.id
+    @job = Job.find_by_id(params[:id])
+    current_one = @job.totalcontainers
+    @job.cost = current_one
+    # @current_user = current_user.id
+    if @job.update(job_params)
+      flash[:message] = "Job updated"
+      redirect_to jobs_path
+    else
+      flash[:message] = "Update Unsuccessful"
+      render edit_job_path
+    end
   end
 
   def destroy
