@@ -57,8 +57,13 @@ class BoatsController < ApplicationController
   end
   def removejob
     boat = Boat.find(params[:id])
+    work = Work.where(job_id: params[:jobid], boat_id: params[:id])[0]
+    job = Job.find(params[:jobid])
+    containers = work.containers
     if boat.jobs.delete(params[:jobid])
       flash[:message] = "Job removed"
+      boat.increment!('loadtaken', -containers)
+      job.increment!('recontainers', containers)
       redirect_to user_boat_path
     else
       flash[:message] = "Update Unsuccessful"
