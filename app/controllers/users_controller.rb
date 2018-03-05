@@ -16,7 +16,6 @@ class UsersController < ApplicationController
   def show
 
     @current_user = current_user.id
-    @user = User.find(params[:id])
     @boats = Boat.all
 
   end
