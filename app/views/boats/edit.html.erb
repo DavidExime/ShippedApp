@@ -1,1 +1,16 @@
-edit.html.erb
+<h1><%= @boat.name %></h1>
+
+<h3>Manage Boat</h3>
+
+<%= form_for @boat,url: user_boat_path do |b| %>
+
+<div>Name:<%=b.text_field :name%></div>
+<%= hidden_field_tag "id", @boat.id%>
+<div>Capacity:<%= b.text_field :capacity%></div>
+<div>Location:<%= b.text_field :location%></div>
+<div>Photo:<%= b.file_field :avatar%></div>
+<%= b.submit %>
+<% end %>
+
+
+<%= link_to "Delete Boat", user_boat_path, method: :delete%>
