@@ -44,10 +44,12 @@ class JobsController < ApplicationController
   def assignjob
     boat = Boat.find(params[:id])
     job = Job.find(params[:jobid])
-    containers = :containers
+    params[:containers] = params[:containers].to_i
     boat.jobs << job
     work = Work.where(job_id: params[:jobid], boat_id: params[:id])
     work.update(containers: params[:containers])
+    boat.increment!('loadtaken', params[:containers])
+    job.increment!('recontainers', -params[:containers])
     redirect_to user_boat_path(id: params[:id], user_id: current_user.id)
   end
   private
