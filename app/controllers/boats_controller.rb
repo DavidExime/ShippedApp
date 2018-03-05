@@ -50,7 +50,9 @@ class BoatsController < ApplicationController
   end
 
   def destroy
-
+    @boat = Boat.find(params[:id])
+    @boat.destroy
+    redirect_to user_path(:id => current_user.id)
   end
   def removejob
     boat = Boat.find(params[:id])

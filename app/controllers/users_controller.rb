@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    
     @current_user = current_user.id
     @user = User.find(params[:id])
     @boats = Boat.all
