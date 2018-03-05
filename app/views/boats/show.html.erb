@@ -1,7 +1,7 @@
 <h1><%= @boat.name %></h1>
 <h6><%= link_to "Manage Boat", edit_user_boat_path%></h6>
 
-<h3>owned by: <%= link_to @user.email, user_path%></h3>
+<h3>owned by: <%= link_to @user.email, user_path(:id => params[:user_id])%></h3>
 
 <div><%= image_tag @boat.avatar.url(:medium) %></div>
 </div>
