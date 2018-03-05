@@ -29,7 +29,7 @@ class BoatsController < ApplicationController
     @current_user = current_user.id
     @boat = Boat.find(params[:id])
     @user = User.find(params[:user_id])
-    @jobs = Job.all
+    @jobs = Job.where.not(recontainers: 0)
   end
 
   def edit
@@ -52,7 +52,16 @@ class BoatsController < ApplicationController
   def destroy
 
   end
-
+  def removejob
+    boat = Boat.find(params[:id])
+    if boat.jobs.delete(params[:jobid])
+      flash[:message] = "Job removed"
+      redirect_to user_boat_path
+    else
+      flash[:message] = "Update Unsuccessful"
+      render user_boat_path
+    end
+  end
   private
 
   # Use strong_parameters for attribute whitelisting
