@@ -19,20 +19,11 @@ class JobsController < ApplicationController
   	@job = Job.new(job_params)
   	@job.recontainers = @job.totalcontainers
   	@job.cost = @job.totalcontainers * 100
-
-
-
   	if @job.save
   		redirect_to "/jobs"
   	else
   		redirect_to new_job_path
-
-
   		flash[:message] = 'Description has to be at least 20 characters, amount of containers has to be at least 1'
-  		
-
-
-
   	end
   end
 
@@ -45,20 +36,21 @@ class JobsController < ApplicationController
   def edit
     @job = Job.find_by_id(params[:id])
 
-    
+
   end
 
   def update
     @job = Job.find_by_id(params[:id])
     current_one = @job.totalcontainers
     @job.cost = current_one
-    
+
     if @job.update(job_params)
       flash[:message] = "Job updated"
       redirect_to job_path
+      @job.increment!('recontainers', params[:totalcontainers].to_i)
     else
       flash[:message] = "Update Unsuccessful"
-      render edit_job_path
+      redirect_back(fallback_location: "/jobs")
     end
   end
 
@@ -76,6 +68,21 @@ class JobsController < ApplicationController
     job.increment!('recontainers', -params[:containers])
     redirect_to user_boat_path(id: params[:id], user_id: current_user.id)
   end
+
+  def unassign_boat
+    job = Job.find_by_id(params[:id])
+    work = Work.where(job_id: params[:id])[0]
+    boat = Boat.find_by_id(params[:boatid])
+    containers = work.containers
+    if job.boats.delete(params[:boatid])
+      boat.decrement!('loadtaken', containers)
+      job.increment!('recontainers', containers)
+      redirect_back(fallback_location: "/boats")
+    else
+      render job_path
+    end
+  end
+
   private
 
   def job_params

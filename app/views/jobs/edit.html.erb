@@ -3,5 +3,6 @@
  <div>Origin:<%= f.text_field :origin %></div>
  <div>Destination:<%= f.text_field :destination %></div>
  <div>Containers:<%= f.text_field :totalcontainers  %></div>
+ <%= f.hidden_field "recontainers",value: :totalcontainers %>
 <%= f.submit %>
   <% end %>
