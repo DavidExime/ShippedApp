@@ -31,7 +31,12 @@
     Containers Remaining:<%= j.recontainers%></div>
     <%= hidden_field_tag "id", @boat.id%>
     <%= hidden_field_tag "jobid", j.id%>
-    <%= number_field_tag "containers", nil, min: 0, max: @boat_cap && j.recontainers %>
+    <% if @boat_cap > j.recontainers %>
+      <% max = j.recontainers %>
+    <% else %>
+      <% max = @boat_cap %>
+    <% end %>
+    <%= number_field_tag "containers", nil, min: 1, max: max %>
     <div><%= r.submit %></div>
     <br>
   <% end %>
