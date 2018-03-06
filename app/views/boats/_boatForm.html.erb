@@ -1,7 +1,7 @@
 
 <%= form_for Boat.new, url: user_boats_path(current_user) do |f| %>
   name<%= f.text_field :name, required: true%>
-  capacity<%= f.text_field :capacity %>
+  capacity<%= f.number_field :capacity, required: true %>
   location<%= f.text_field :location,required: true  %>
   photo<%= f.file_field :avatar %>
   <%= f.hidden_field :loadtaken, value: 0 %>
