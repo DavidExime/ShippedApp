@@ -19,6 +19,7 @@ class JobsController < ApplicationController
   	@job = Job.new(job_params)
   	@job.recontainers = @job.totalcontainers
   	@job.cost = @job.totalcontainers * 100
+
   	# if(@job.cost.to_f < 100)
    #        flash[:message] = 'All Jobs Must Cost Min $100'
    #          redirect_to jobs_path
@@ -27,14 +28,18 @@ class JobsController < ApplicationController
    #        flash[:message] = 'Descriptions must be longer than 20 characters'
    #          redirect_to jobs_path
    #  end
-  	if @job.save
 
+
+  	if @job.save
   		redirect_to "/jobs"
   	else
   		redirect_to new_job_path
 
+
   		flash[:message] = 'Job saved'
   		redirect_to jobs_path
+
+
 
   	end
   end
@@ -69,18 +74,12 @@ class JobsController < ApplicationController
     @current_user = current_user.id
   end
   def assignjob
-    boat = Boat.find(params[:id])
-    job = Job.find(params[:jobid])
-    params[:containers] = params[:containers].to_i
-    boat.jobs << job
-    work = Work.where(job_id: params[:jobid], boat_id: params[:id])
-    work.update(containers: params[:containers])
-    boat.increment!('loadtaken', params[:containers])
-    job.increment!('recontainers', -params[:containers])
+    @boat = Boat.find(params[:id])
+    @job = Job.find(params[:jobid])
+    @boat.jobs << @job
     redirect_to user_boat_path(id: params[:id], user_id: current_user.id)
   end
   private
-
 
   def job_params
     params.require(:job).permit(:description, :origin, :destination, :cost, :totalcontainers, :recontainers)
