@@ -1,6 +1,6 @@
 class Job < ApplicationRecord
-validates :origin, :presence => true
-validates :destination, :presence => true
-has_many :works
+validates :description, length: { minimum: 20 }
+validates :totalcontainers, numericality: { only_integer: true }
+validates :totalcontainers, numericality: { greater_than: 0 }
 has_many :boats, :through => :works
 end
