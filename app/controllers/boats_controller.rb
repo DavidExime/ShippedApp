@@ -31,6 +31,7 @@ class BoatsController < ApplicationController
     @user = User.find(params[:user_id])
     @boatjobs = Work.where(boat_id: params[:id])
     @jobs = Job.where.not(recontainers: 0)
+    @boat_cap = @boat.capacity - @boat.loadtaken
   end
 
   def edit
@@ -55,7 +56,7 @@ class BoatsController < ApplicationController
     @boat.destroy
     redirect_to user_path(:id => current_user.id)
   end
-  
+
   def removejob
     boat = Boat.find(params[:id])
     work = Work.where(job_id: params[:jobid], boat_id: params[:id])[0]
@@ -63,7 +64,7 @@ class BoatsController < ApplicationController
     containers = work.containers
     if boat.jobs.delete(params[:jobid])
       flash[:message] = "Job removed"
-      boat.increment!('loadtaken', -containers)
+      boat.decrement!('loadtaken', containers)
       job.increment!('recontainers', containers)
       redirect_to user_boat_path
     else
@@ -80,6 +81,3 @@ class BoatsController < ApplicationController
     params.require(:boat).permit(:avatar, :name, :capacity, :location, :loadtaken, :user_id)
   end
 end
-
-
-
