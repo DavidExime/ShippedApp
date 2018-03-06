@@ -20,14 +20,6 @@ class JobsController < ApplicationController
   	@job.recontainers = @job.totalcontainers
   	@job.cost = @job.totalcontainers * 100
 
-  	# if(@job.cost.to_f < 100)
-   #        flash[:message] = 'All Jobs Must Cost Min $100'
-   #          redirect_to jobs_path
-   #  end
-   #  if(@job.description.length < 20)
-   #        flash[:message] = 'Descriptions must be longer than 20 characters'
-   #          redirect_to jobs_path
-   #  end
 
 
   	if @job.save
@@ -36,8 +28,8 @@ class JobsController < ApplicationController
   		redirect_to new_job_path
 
 
-  		flash[:message] = 'Job saved'
-  		redirect_to jobs_path
+  		flash[:message] = 'Description has to be at least 20 characters, amount of containers has to be at least 1'
+  		
 
 
 
@@ -53,14 +45,14 @@ class JobsController < ApplicationController
   def edit
     @job = Job.find_by_id(params[:id])
 
-    # @current_user = current_user.id
+    
   end
 
   def update
     @job = Job.find_by_id(params[:id])
     current_one = @job.totalcontainers
     @job.cost = current_one
-    # @current_user = current_user.id
+    
     if @job.update(job_params)
       flash[:message] = "Job updated"
       redirect_to job_path
