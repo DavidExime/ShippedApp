@@ -6,17 +6,23 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Economica|Oswald" rel="stylesheet">
   </head>
 
   <body>
-    <nav>
+    <nav class='navbar'>
+      <ul>
       <% if user_signed_in? %>
-        <%= link_to "Profile", user_path(current_user), :method => :get %>
-        <%= link_to "Users List", users_path, :method => :get %>
-        <%= link_to "Boats List", user_boats_path(current_user), :method => :get %>
-        <%= link_to "Jobs List", jobs_path, :method => :get %>
-        <%= link_to "Settings", edit_user_registration_path, :method => :get %>
-        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+        <li><%= link_to "Profile", user_path(current_user), :method => :get %></li>
+        <li><%= link_to "Users List", users_path, :method => :get %></li>
+        
+        <%= link_to "Boats List", user_boats_path(current_user), :method => :get %></li>
+        
+        <li><%= link_to "Jobs List", jobs_path, :method => :get %></li>
+        
+        <li><%= link_to "Settings", edit_user_registration_path, :method => :get %></li>
+        
+        <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
       <% else%>
 
       <% end %>
