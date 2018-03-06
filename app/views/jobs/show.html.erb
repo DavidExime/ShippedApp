@@ -3,21 +3,14 @@
 <div>Destination:<%= @job.destination %></div>
 <div>Cost:<%= @job.totalcontainers * 100 %></div>
 <div>Total Containers:<%= @job.totalcontainers %></div>
-<div>Remaining Containers:<%= @job.totalcontainers %></div>
+<div>Remaining Containers:<%= @job.totalcontainers - @containers.to_i %></div>
 
 <h1><%= @job.totalcontainers * 100 %></h1>
 
 <%= link_to "Update Job", edit_job_path, method: :get%>
 
-
-
-
-
-<!-- Description - characters > 20, unique
-Origin,
-Destination,
-Cost - cost > $100,
-Amount of containers
-
-
-rediect_to job_show -->
+<% @works.each do |w| %>
+<div>Boat:<%= Boat.find(w.boat_id).name %></div>
+<div>Containers used:<%= w.containers %></div>
+<%=link_to "Unassign", unassign_boat_path(:boatid => w.boat_id), method: :delete%>
+<% end %>

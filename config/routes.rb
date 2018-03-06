@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   resources :jobs
   delete '/users/:user_id/boats/:id/removejob', to: "boats#removejob", as: :removejob
   post '/assignjob', to: "jobs#assignjob"
+
+  delete '/jobs/:id/unassign_boat', to: "jobs#unassign_boat", as: :unassign_boat
+
 end
