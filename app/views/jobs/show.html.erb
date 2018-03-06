@@ -7,7 +7,11 @@
 
 <h1><%= @job.totalcontainers * 100 %></h1>
 
+<% if !@works.any? %>
 <%= link_to "Update Job", edit_job_path, method: :get%>
+<% else %>
+<p> Job's cannot be edited whilst assigned </p>
+<% end %>
 
 
 

@@ -36,6 +36,7 @@ class BoatsController < ApplicationController
   def edit
     @current_user = current_user.id
     @boat = Boat.find(params[:id])
+    @work = Work.where(boat_id: params[:id])
   end
 
   def update
@@ -55,7 +56,7 @@ class BoatsController < ApplicationController
     @boat.destroy
     redirect_to user_path(:id => current_user.id)
   end
-  
+
   def removejob
     boat = Boat.find(params[:id])
     work = Work.where(job_id: params[:jobid], boat_id: params[:id])[0]
@@ -80,6 +81,3 @@ class BoatsController < ApplicationController
     params.require(:boat).permit(:avatar, :name, :capacity, :location, :loadtaken, :user_id)
   end
 end
-
-
-
