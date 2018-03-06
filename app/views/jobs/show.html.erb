@@ -5,7 +5,7 @@
 <div>Total Containers:<%= @job.totalcontainers %></div>
 <div>Remaining Containers:<%= @job.totalcontainers - @containers.to_i %></div>
 
-<h1><%= @job.totalcontainers * 100 %></h1>
+<h1>Total: <%= @job.totalcontainers * 100 %></h1>
 
 <%= link_to "Update Job", edit_job_path, method: :get%>
 
