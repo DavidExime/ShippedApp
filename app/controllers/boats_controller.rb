@@ -37,6 +37,7 @@ class BoatsController < ApplicationController
   def edit
     @current_user = current_user.id
     @boat = Boat.find(params[:id])
+    @work = Work.where(boat_id: params[:id])
   end
 
   def update

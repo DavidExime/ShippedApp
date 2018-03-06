@@ -6,11 +6,14 @@
 
 <div>Name:<%=b.text_field :name%></div>
 <%= hidden_field_tag "id", @boat.id%>
-<div>Capacity:<%= b.text_field :capacity%></div>
+<div>Capacity:<% if !@work.any? %><%= b.text_field :capacity%><% else %>cannot be updated whilst jobs are assigned<% end %></div>
 <div>Location:<%= b.text_field :location%></div>
 <div>Photo:<%= b.file_field :avatar%></div>
 <%= b.submit %>
 <% end %>
 
-
+<% if !@work.any? %>
 <%= link_to "Delete Boat", user_boat_path, method: :delete%>
+<% else %>
+<p>Cannot delete boat whilst jobs are assigned</p>
+<% end %>

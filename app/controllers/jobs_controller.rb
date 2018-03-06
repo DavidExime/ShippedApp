@@ -39,7 +39,7 @@ class JobsController < ApplicationController
   def show
     @current_user = current_user.id
     @job = Job.find_by_id(params[:id])
-
+    @works = Work.where(job_id: params[:id])
   end
 
   def edit
