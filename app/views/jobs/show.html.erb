@@ -1,9 +1,9 @@
-<div>Description:<%= Job.find_by_id(params[:id]).description %></div>
-<div>Origin:<%= Job.find_by_id(params[:id]).origin %></div>
-<div>Destination:<%= Job.find_by_id(params[:id]).destination %></div>
+<div>Description:<%= @job.description %></div>
+<div>Origin:<%= @job.origin %></div>
+<div>Destination:<%= @job.destination %></div>
 <div>Cost:<%= @job.totalcontainers * 100 %></div>
-<div>Total Containers:<%= Job.find_by_id(params[:id]).totalcontainers %></div>
-<div>Remaining Containers:<%= Job.find_by_id(params[:id]).recontainers %></div>
+<div>Total Containers:<%= @job.totalcontainers %></div>
+<div>Remaining Containers:<%= @job.totalcontainers %></div>
 
 <h1><%= @job.totalcontainers * 100 %></h1>
 

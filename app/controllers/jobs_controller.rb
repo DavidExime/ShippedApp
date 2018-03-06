@@ -62,7 +62,7 @@ class JobsController < ApplicationController
     # @current_user = current_user.id
     if @job.update(job_params)
       flash[:message] = "Job updated"
-      redirect_to jobs_path
+      redirect_to job_path
     else
       flash[:message] = "Update Unsuccessful"
       render edit_job_path
