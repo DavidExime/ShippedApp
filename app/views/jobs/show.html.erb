@@ -1,10 +1,13 @@
-<div><%= Job.find_by_id(params[:id]).description %></div>
-<div><%= Job.find_by_id(params[:id]).origin %></div>
-<div><%= Job.find_by_id(params[:id]).destination %></div>
-<div><%= Job.find_by_id(params[:id]).cost %></div>
-<div><%= Job.find_by_id(params[:id]).totalcontainers %></div>
-<div><%= Job.find_by_id(params[:id]).recontainers %></div>
+<div>Description:<%= Job.find_by_id(params[:id]).description %></div>
+<div>Origin:<%= Job.find_by_id(params[:id]).origin %></div>
+<div>Destination:<%= Job.find_by_id(params[:id]).destination %></div>
+<div>Cost:<%= @job.totalcontainers * 100 %></div>
+<div>Total Containers:<%= Job.find_by_id(params[:id]).totalcontainers %></div>
+<div>Remaining Containers:<%= Job.find_by_id(params[:id]).recontainers %></div>
 
+<h1><%= @job.totalcontainers * 100 %></h1>
+
+<%= link_to "Update Job", edit_job_path, method: :get%>
 
 
 

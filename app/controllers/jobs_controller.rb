@@ -28,26 +28,45 @@ class JobsController < ApplicationController
    #          redirect_to jobs_path 
    #  end
   	if @job.save
+
+  		redirect_to "/jobs"
+  	else
+  		redirect_to new_job_path
+
   		flash[:message] = 'Job saved'
   		redirect_to jobs_path
 
   	else      
   		render "/jobs/new"
   		flash[:message] = 'Job unsaved'
+
   	end
   end
 
   def show
     @current_user = current_user.id
-    @jobs = Job.all
+    @job = Job.find_by_id(params[:id])
+
   end
 
   def edit
-    @current_user = current_user.id
+    @job = Job.find_by_id(params[:id])
+
+    # @current_user = current_user.id
   end
 
   def update
-    @current_user = current_user.id
+    @job = Job.find_by_id(params[:id])
+    current_one = @job.totalcontainers
+    @job.cost = current_one
+    # @current_user = current_user.id
+    if @job.update(job_params)
+      flash[:message] = "Job updated"
+      redirect_to jobs_path
+    else
+      flash[:message] = "Update Unsuccessful"
+      render edit_job_path
+    end
   end
 
   def destroy
