@@ -1,8 +1,22 @@
-<%= form_for Job.new, url: jobs_path do |f| %>
- description:<div><%=f.text_field :description %></div>
- origin<div><%= f.text_field :origin %></div>
- destination<div><%= f.text_field :destination %></div>
- total containers<div><%= f.text_field :totalcontainers  %></div>
+<%= form_for @job, url: jobs_path do |f| %>
+ <% if @job.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@job.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @job.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ Description Of Job:<div><%=f.text_field :description %></div>
+ Country Of Origin:<div><%= f.text_field :origin %></div>
+ Destination Origin:<div><%= f.text_field :destination %></div>
+ Total Cargo Containers:<div><%= f.text_field :totalcontainers  %></div>
 
 
  
