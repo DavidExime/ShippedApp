@@ -17,15 +17,15 @@ class JobsController < ApplicationController
   def create
 
   	@job = Job.new(job_params)
-  	@job.recontainers = @job.totalcontainers  
-  	@job.cost = @job.totalcontainers * 100  
+  	@job.recontainers = @job.totalcontainers
+  	@job.cost = @job.totalcontainers * 100
   	# if(@job.cost.to_f < 100)
    #        flash[:message] = 'All Jobs Must Cost Min $100'
-   #          redirect_to jobs_path     
+   #          redirect_to jobs_path
    #  end
    #  if(@job.description.length < 20)
    #        flash[:message] = 'Descriptions must be longer than 20 characters'
-   #          redirect_to jobs_path 
+   #          redirect_to jobs_path
    #  end
   	if @job.save
 
@@ -35,10 +35,6 @@ class JobsController < ApplicationController
 
   		flash[:message] = 'Job saved'
   		redirect_to jobs_path
-
-  	else      
-  		render "/jobs/new"
-  		flash[:message] = 'Job unsaved'
 
   	end
   end
