@@ -1,4 +1,4 @@
-<h1><%= @user.email %>'s boats</h1>
+<div class="users_email_show"><h1><%= @user.email %>'s boats</h1></div>
 <ol>
   <% @boats.reverse.each do |b| %>
     <% if @user.id == b.user_id %>
