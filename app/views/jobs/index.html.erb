@@ -1,7 +1,7 @@
-<h3>List of all jobs:</h3>
+<div><h3 id="heading_job_list">List of all jobs:</h3></div>
 <% @jobs.each do |a| %>
-	<a href='/jobs/<%=a.id %>'><div><%= a.description %></div></a>
+	<div id="job_description_index"><a href='/jobs/<%=a.id %>'><%= a.description %></a></div>
 	<div><%=  %></div>
 	<% end %>
 <br>
-<%= link_to 'New Jobs', new_job_path %>
+<div class="new_job_form"><%= link_to 'New Jobs', new_job_path, :id => "new_job_text"%></div>
